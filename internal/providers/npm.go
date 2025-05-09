@@ -74,6 +74,8 @@ type NPMProvider struct {
 	BaseProvider
 }
 
+
+
 func NewNPMProvider(logger *zap.Logger, packageType string) Provider {
 	return &NPMProvider{
 		BaseProvider: NewBaseProvider(packageType, "", targetHostname, false),

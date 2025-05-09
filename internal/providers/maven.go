@@ -31,6 +31,8 @@ type MavenProvider struct {
 // Constructor
 // ----------
 
+var targetHostname = viper.GetString("GHMPKG_TARGET_HOSTNAME")
+
 // NewMavenProvider creates a new instance of MavenProvider
 func NewMavenProvider(logger *zap.Logger, packageType string) Provider {
 	return &MavenProvider{
