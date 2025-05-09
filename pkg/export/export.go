@@ -5,10 +5,10 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/mona-actions/gh-migrate-packages/internal/api"
-	"github.com/mona-actions/gh-migrate-packages/internal/files"
-	"github.com/mona-actions/gh-migrate-packages/internal/providers"
-	"github.com/mona-actions/gh-migrate-packages/pkg/common"
+	"github.com/mark-humane/gh-migrate-packages/internal/api"
+	"github.com/mark-humane/gh-migrate-packages/internal/files"
+	"github.com/mark-humane/gh-migrate-packages/internal/providers"
+	"github.com/mark-humane/gh-migrate-packages/pkg/common"
 
 	"github.com/pterm/pterm"
 	"github.com/spf13/viper"

@@ -3,9 +3,9 @@ package common
 import (
 	"fmt"
 
-	"github.com/mona-actions/gh-migrate-packages/internal/api"
-	"github.com/mona-actions/gh-migrate-packages/internal/providers"
-	"github.com/mona-actions/gh-migrate-packages/internal/utils"
+	"github.com/mark-humane/gh-migrate-packages/internal/api"
+	"github.com/mark-humane/gh-migrate-packages/internal/providers"
+	"github.com/mark-humane/gh-migrate-packages/internal/utils"
 	"github.com/pterm/pterm"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"

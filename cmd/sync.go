@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/mona-actions/gh-migrate-packages/pkg/sync"
+	"github.com/mark-humane/gh-migrate-packages/pkg/sync"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"

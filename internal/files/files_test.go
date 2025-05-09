@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/mona-actions/gh-migrate-packages/internal/files"
+	"github.com/mark-humane/gh-migrate-packages/internal/files"
 )
 
 func TestCreateJSON(t *testing.T) {

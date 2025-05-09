@@ -4,7 +4,7 @@
 
 ## Install
 ```sh
-gh extension install mona-actions/gh-migrate-packages
+gh extension install mark-humane/gh-migrate-packages
 ```
 
 If you are are planning to migrate `containers` or `nuget` packages, you will also need to install the following tools installed.  
@@ -37,7 +37,7 @@ Create a `csv` to prepare for migration. If you specify a package type or types,
 ### Example Export Command for all package types (recommended)
 ```sh
 gh migrate-packages export \
-  --source-organization mona-actions \
+  --source-organization mark-humane \
   --source-token ghp_xxxxxxxxxxxx
 ```
 
@@ -61,7 +61,7 @@ packages-migration
 gh migrate-packages export \
   --package-type maven \
   --package-type nuget \
-  --source-organization mona-actions \
+  --source-organization mark-humane \
   --source-token ghp_xxxxxxxxxxxx
 ```
 
@@ -215,7 +215,7 @@ The `Rename` method in the `NPMProvider`(`internal/providers/npm.go`) performs a
 {
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mona-actions/npm-package.git"
+    "url": "git+https://github.com/mark-humane/npm-package.git"
   }
 }
 ```
@@ -273,8 +273,8 @@ The tool exports and imports repository information using the following CSV form
 
 ```csv
 "organization", "repository", "type", "name", "version", "filename"
-mona-actions,mona-actions-docker,docker,mona-actions-docker,1.0.0,mona-actions-docker-1.0.0.tar.gz
-mona-actions,mona-actions-docker,docker,mona-actions-docker,1.0.1,mona-actions-docker-1.0.1.tar.gz
+mark-humane,mark-humane-docker,docker,mark-humane-docker,1.0.0,mark-humane-docker-1.0.0.tar.gz
+mark-humane,mark-humane-docker,docker,mark-humane-docker,1.0.1,mark-humane-docker-1.0.1.tar.gz
 ```
 
 - `organization`: The name of the organization
@@ -307,7 +307,7 @@ The tool supports loading configuration from a `.env` file. This provides an alt
 
 ```bash
 # GitHub Migration PKG (GHMPKG)
-GHMPKG_SOURCE_ORGANIZATION=mona-actions  # Source organization name
+GHMPKG_SOURCE_ORGANIZATION=mark-humane  # Source organization name
 GHMPKG_SOURCE_HOSTNAME=                  # Source hostname
 GHMPKG_SOURCE_TOKEN=ghp_xxx              # Source token
 GHMPKG_TARGET_ORGANIZATION=mona-emu      # Target organization name
@@ -377,5 +377,5 @@ This tool uses `gpr` to push nuget packages which was written by GitHub staff an
 
 ## License
 
-- [MIT](./license) (c) [Mona-Actions](https://github.com/mona-actions)
+- [MIT](./license) (c) [Mark-Humane](https://github.com/mark-humane)
 - [Contributing](./contributing.md)

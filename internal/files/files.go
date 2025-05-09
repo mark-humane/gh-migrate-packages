@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/mona-actions/gh-migrate-packages/internal/utils"
+	"github.com/mark-humane/gh-migrate-packages/internal/utils"
 )
 
 func OpenFile(fileName string) (*os.File, error) {

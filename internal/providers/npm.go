@@ -13,7 +13,7 @@ import (
 	"strings"
 
 	"github.com/google/go-github/v62/github"
-	"github.com/mona-actions/gh-migrate-packages/internal/utils"
+	"github.com/mark-humane/gh-migrate-packages/internal/utils"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
 )
@@ -76,7 +76,7 @@ type NPMProvider struct {
 
 func NewNPMProvider(logger *zap.Logger, packageType string) Provider {
 	return &NPMProvider{
-		BaseProvider: NewBaseProvider(packageType, "", "", false),
+		BaseProvider: NewBaseProvider(packageType, "", targetHostname, false),
 	}
 }
 

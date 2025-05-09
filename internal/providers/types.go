@@ -6,7 +6,7 @@ import (
 	"net/url"
 
 	"github.com/google/go-github/v62/github"
-	"github.com/mona-actions/gh-migrate-packages/internal/utils"
+	"github.com/mark-humane/gh-migrate-packages/internal/utils"
 	"github.com/shurcooL/githubv4"
 	"go.uber.org/zap"
 )

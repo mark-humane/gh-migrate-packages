@@ -11,7 +11,7 @@ import (
 	"sync"
 
 	"github.com/google/go-github/v62/github"
-	"github.com/mona-actions/gh-migrate-packages/internal/utils"
+	"github.com/mark-humane/gh-migrate-packages/internal/utils"
 	"github.com/shurcooL/githubv4"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
@@ -34,7 +34,7 @@ type MavenProvider struct {
 // NewMavenProvider creates a new instance of MavenProvider
 func NewMavenProvider(logger *zap.Logger, packageType string) Provider {
 	return &MavenProvider{
-		BaseProvider: NewBaseProvider(packageType, "", "", false),
+		BaseProvider: NewBaseProvider(packageType, "", targetHostname, false),
 	}
 }
 
