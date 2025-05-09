@@ -210,9 +210,18 @@ func (p *NPMProvider) Upload(logger *zap.Logger, owner, repository, packageType,
 			npmrcPath := filepath.Join(packageDir, ".npmrc")
 			tgz := fmt.Sprintf("%s-%s.tgz", packageName, version)
 
-			// Create .npmrc content
-			npmrcContent := fmt.Sprintf("//npm.pkg.github.com/:_authToken=%s\nregistry=https://npm.pkg.github.com/%s",
-				viper.GetString("GHMPKG_TARGET_TOKEN"), owner)
+			// Get registry hostname from target registry URL
+			registryHost := "npm.pkg.github.com"
+			if p.TargetRegistryUrl != nil {
+				registryHost = p.TargetRegistryUrl.Host
+			}
+
+			// Create .npmrc content with correct registry hostname
+			npmrcContent := fmt.Sprintf("//%s/:_authToken=%s\nregistry=https://%s/%s",
+				registryHost, 
+				viper.GetString("GHMPKG_TARGET_TOKEN"), 
+				registryHost, 
+				owner)
 
 			// Write .npmrc file
 			if err := os.WriteFile(npmrcPath, []byte(npmrcContent), 0644); err != nil {

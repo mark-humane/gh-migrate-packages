@@ -256,28 +256,43 @@ func (p *BaseProvider) uploadPackage(
 
 // NewBaseProvider creates a new BaseProvider with common initialization logic
 func NewBaseProvider(packageType, sourceHostname, targetHostname string, isContainer bool) BaseProvider {
-	if sourceHostname == "" {
-		sourceHostname = "github.com"
+	// Parse hostnames to handle GHES URLs correctly
+	sourceHostnameUrl, err := url.Parse(sourceHostname)
+	targetHostnameUrl, err2 := url.Parse(targetHostname)
+	
+	// Default to github.com if parsing fails or hostname is empty
+	sourceHost := "github.com"
+	targetHost := "github.com"
+	
+	if err == nil && sourceHostnameUrl.Host != "" {
+		sourceHost = sourceHostnameUrl.Host
+	} else if sourceHostname != "" {
+		// If it's not a full URL but not empty, use as is
+		sourceHost = sourceHostname
 	}
-	if targetHostname == "" {
-		targetHostname = "github.com"
+	
+	if err2 == nil && targetHostnameUrl.Host != "" {
+		targetHost = targetHostnameUrl.Host
+	} else if targetHostname != "" {
+		// If it's not a full URL but not empty, use as is
+		targetHost = targetHostname
 	}
-
+	
 	var sourceRegistryUrl, targetRegistryUrl string
 	if isContainer {
 		sourceRegistryUrl = "ghcr.io"
 		targetRegistryUrl = "ghcr.io"
 	} else {
-		sourceRegistryUrl = fmt.Sprintf("https://%s.pkg.%s/", packageType, sourceHostname)
-		targetRegistryUrl = fmt.Sprintf("https://%s.pkg.%s/", packageType, targetHostname)
+		sourceRegistryUrl = fmt.Sprintf("https://%s.pkg.%s/", packageType, sourceHost)
+		targetRegistryUrl = fmt.Sprintf("https://%s.pkg.%s/", packageType, targetHost)
 	}
 
 	return BaseProvider{
 		PackageType:       packageType,
 		SourceRegistryUrl: utils.ParseUrl(sourceRegistryUrl),
 		TargetRegistryUrl: utils.ParseUrl(targetRegistryUrl),
-		SourceHostnameUrl: utils.ParseUrl(fmt.Sprintf("https://%s/", sourceHostname)),
-		TargetHostnameUrl: utils.ParseUrl(fmt.Sprintf("https://%s/", targetHostname)),
+		SourceHostnameUrl: utils.ParseUrl(fmt.Sprintf("https://%s/", sourceHost)),
+		TargetHostnameUrl: utils.ParseUrl(fmt.Sprintf("https://%s/", targetHost)),
 	}
 }
 
