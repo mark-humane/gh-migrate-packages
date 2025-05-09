@@ -171,9 +171,22 @@ func (p *NPMProvider) Rename(logger *zap.Logger, filename string) error {
 	newContent := strings.Replace(string(content), oldScope, newScope, -1)
 
 	// Replace the repository url in the content
-	// todo: we do not support GHES yet
-	oldRepoUrl := fmt.Sprintf("https://github.com/%s/", sourceOrg)
-	newRepoUrl := fmt.Sprintf("https://github.com/%s/", targetOrg)
+	sourceHostname := "github.com"
+	targetHostname := "github.com"
+	if viper.GetString("GHMPKG_SOURCE_HOSTNAME") != "" {
+		sourceHostnameUrl, _ := url.Parse(viper.GetString("GHMPKG_SOURCE_HOSTNAME"))
+		if sourceHostnameUrl != nil {
+			sourceHostname = sourceHostnameUrl.Hostname()
+		}
+	}
+	if viper.GetString("GHMPKG_TARGET_HOSTNAME") != "" {
+		targetHostnameUrl, _ := url.Parse(viper.GetString("GHMPKG_TARGET_HOSTNAME"))
+		if targetHostnameUrl != nil {
+			targetHostname = targetHostnameUrl.Hostname()
+		}
+	}
+	oldRepoUrl := fmt.Sprintf("https://%s/%s/", sourceHostname, sourceOrg)
+	newRepoUrl := fmt.Sprintf("https://%s/%s/", targetHostname, targetOrg)
 	newContent = strings.Replace(newContent, oldRepoUrl, newRepoUrl, -1)
 
 	// Write back to file

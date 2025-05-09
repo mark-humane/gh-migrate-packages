@@ -137,7 +137,7 @@ func retryOperation(operation func() error) error {
 }
 
 func FetchPackages(packageType string) ([]*github.Package, error) {
-	client, err := newGitHubClientWithHostname(viper.GetString("GHMPKG_SOURCE_TOKEN"), "")
+	client, err := newGitHubClientWithHostname(viper.GetString("GHMPKG_SOURCE_TOKEN"), viper.GetString("GHMPKG_SOURCE_HOSTNAME"))
 	ctx := context.WithValue(context.Background(), github.SleepUntilPrimaryRateLimitResetWhenRateLimited, true)
 	state := "active"
 	var packages []*github.Package
@@ -219,7 +219,7 @@ func FetchPackageVersions(pkg *github.Package) ([]*github.PackageVersion, error)
 }
 
 func PackageExists(packageName, packageType string) (bool, error) {
-	client, err := newGitHubClientWithHostname(viper.GetString("GHMPKG_TARGET_TOKEN"), "")
+	client, err := newGitHubClientWithHostname(viper.GetString("GHMPKG_TARGET_TOKEN"), viper.GetString("GHMPKG_TARGET_HOSTNAME"))
 	ctx := context.WithValue(context.Background(), github.SleepUntilPrimaryRateLimitResetWhenRateLimited, true)
 
 	var exists = true

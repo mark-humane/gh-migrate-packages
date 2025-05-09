@@ -30,12 +30,12 @@ var exportCmd = &cobra.Command{
 }
 
 func init() {
-	//exportCmd.Flags().StringP("source-hostname", "n", "", "GitHub Enterprise Server hostname URL (optional)")
+	exportCmd.Flags().StringP("source-hostname", "n", "", "GitHub Enterprise Server hostname URL (optional)")
 	exportCmd.Flags().StringP("source-organization", "o", "", "Organization (required)")
 	exportCmd.Flags().StringP("source-token", "t", "", "GitHub token (required)")
 	exportCmd.Flags().StringSliceP("package-types", "p", []string{}, "Package type(s) to process (can be specified multiple times)")
 
-	//viper.BindPFlag("GHMPKG_SOURCE_HOSTNAME", exportCmd.Flags().Lookup("source-hostname"))
+	viper.BindPFlag("GHMPKG_SOURCE_HOSTNAME", exportCmd.Flags().Lookup("source-hostname"))
 	viper.BindPFlag("GHMPKG_SOURCE_ORGANIZATION", exportCmd.Flags().Lookup("source-organization"))
 	viper.BindPFlag("GHMPKG_SOURCE_TOKEN", exportCmd.Flags().Lookup("source-token"))
 	viper.BindPFlag("GHMPKG_PACKAGE_TYPES", exportCmd.Flags().Lookup("package-types"))
